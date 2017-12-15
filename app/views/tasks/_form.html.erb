@@ -1,17 +1,8 @@
 <div class="row">    <!-- Bootstrap -->
   <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">    <!-- Bootstrap -->
-    <%= form_for(task) do |f| %>
-    <% if task.errors.any? %>
-      <div class="alert alert-warning">    <!-- Bootstrap -->
-        <ul>
-          <% task.errors.full_messages.each do |task| %>
-            <li><%= task %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-<!-- Bootstrap -->
+   
+    <%= form_for(@task) do |f| %>
+   
       <div class="form-group">  
         <%= f.label :status, 'ステータス' %>
         <%= f.text_field :status, class: 'form-control' %>
@@ -20,9 +11,9 @@
       <div class="form-group">
         <%= f.label :content, 'タスク内容' %>
         <%= f.text_field :content, class: 'form-control' %>
-      </div>  
-  
-    <%= f.submit '登録', class: 'btn btn-primary' %>
-    <% end %>
+      </div> 
+      
+      <%= f.submit '登録', class: 'btn btn-primary' %>
+    <% end %>  
   </div>
 </div>

@@ -1,6 +1,6 @@
-<h1>タスク一覧</h1>    <!-- Bootstrap -->
-
-<% if @tasks.any? %>
+<% if logged_in? %>
+  <h1><%= current_user.name %> のタスク一覧</h1>
+ 
   <table class="table table-striped">
     <thead>
       <tr>
@@ -11,6 +11,7 @@
     </thead>
     <tbody>
       <% @tasks.each do |task| %>
+        <% user = task.user %>
         <tr>
           <td><%= link_to task.id, task %></td>
           <td><%= task.status %></td>
@@ -19,10 +20,15 @@
       <% end %>
     </tbody>
   </table>
-  <div>
-    <%= paginate @tasks %>
+  <%= paginate @tasks %>
+
+<%= link_to '新規タスクの投稿', new_task_path, class: "btn btn-primary" %>  
+  
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Welcome to タスク管理！</h1>
+      <%= link_to '今すぐユーザ登録!!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
   </div>
-<% end %>
-
-<%= link_to '新規タスクの投稿', new_task_path, class: "btn btn-primary" %>
-
+<% end %>  
